@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>录制端 · 摄像头</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <div class="brand">🎥 摄像头录制端</div>
+    <div class="conn"><span id="connDot" class="dot"></span><span id="connText">连接中…</span></div>
+  </header>
+
+  <main class="grid">
+    <section class="card stage">
+      <video id="preview" autoplay muted playsinline></video>
+      <div id="placeholder" class="placeholder">摄像头未开启</div>
+      <div class="badge" id="recBadge">● REC 00:00</div>
+    </section>
+
+    <aside class="card panel">
+      <label class="field">房间号
+        <input id="room" value="demo" maxlength="20" />
+      </label>
+      <label class="field">名称
+        <input id="name" value="录制端-1" maxlength="20" />
+      </label>
+
+      <div class="btns">
+        <button id="btnCam" class="btn primary">开启摄像头</button>
+        <button id="btnRec" class="btn danger" disabled>开始录制</button>
+      </div>
+
+      <div class="stats">
+        <div><span>观众</span><strong id="viewers">0</strong></div>
+        <div><span>录制</span><strong id="recTime">00:00</strong></div>
+      </div>
+
+      <div class="uploader" id="uploader" hidden>
+        <div class="bar"><i id="barFill"></i></div>
+        <small id="uploadText"></small>
+      </div>
+
+      <p class="hint">后台监看：<a href="/admin.html" target="_blank">/admin.html</a></p>
+      <p class="hint">提示：页面必须通过 https 或 localhost 打开，否则无法调用摄像头。</p>
+    </aside>
+  </main>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="recorder.js"></script>
+</body>
+</html>
